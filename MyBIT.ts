@@ -19,7 +19,7 @@ enum motorCH {
  * Custom blocks
  */
 //% weight=50 color=#ff6600 icon="\uf11e"
-namespace iBIT {
+namespace MyBIT {
       
     /**Motor Block to drives motor forward and backward. The speed motor is adjustable between 0 to 100.
       * @param speed percent of maximum speed, eg: 50
