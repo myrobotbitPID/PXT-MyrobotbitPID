@@ -144,7 +144,7 @@ export function followlineTurn(turnDIR:Turn, speedturn:number): void {
  * @param speedrotate   	speed of motor; eg: 50
  * @param pausems       	time to brake; eg: 400
  */
- //% blockId=Motor_rotate block="rotate  %Turn | speed %speedrotate | pause %pausems | mS"
+ //% blockId=Motor_rotate block="rotate  %Turn | speed %speedrotate | pause %pausems |mS"
  //% speedrotate.min=0 speedrotate.max=100
  export function Rotate(rotateDIR:Turn, speedrotate:number, pausems: number): void {
       let motorspeedrotate = pins.map(speedrotate,0,100,0,1023)      
@@ -179,7 +179,7 @@ export function followlineTurn(turnDIR:Turn, speedturn:number): void {
  */
  //% blockId=Motor_rotateline block="rotate  %Turn | speed %speedline"
  //% speedline.min=0 speedline.max=100
- export function RotateLINE(rotateLINE:Turn, speedline:number): void {
+ export function RotateNOTIME(rotateLINE:Turn, speedline:number): void {
       let motorspeedline = pins.map(speedline,0,100,0,1023)      
       if (rotateLINE == Turn.Left) {
            pins.analogWritePin(AnalogPin.P14, motorspeedrotate)
@@ -195,5 +195,14 @@ export function followlineTurn(turnDIR:Turn, speedturn:number): void {
        }
     }
 
+/**
+ * Execute puase time
+ * @param pausetime  	mSec to delay; eg: 100
+*/
+ //% pausetime.min=1  pausetime.max=100000
+ //% blockId=Motor_TimePAUSE block="pause | %pausetime | mS"
+ export function TimePAUSE(pausetime: number): void {
+	basic.pause(pausetime)
+        }
 	
 }
