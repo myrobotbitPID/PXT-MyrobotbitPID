@@ -82,8 +82,7 @@ namespace MyBIT {
      * Turns off the motor
      * @param motor which motor to turn off
      */
-    //% blockId=Motor_motoroff
-    //% block="motor %motorSEL | stop mode %StopMode"
+    //% blockId="Motor_motoroff" block="motor %motorSEL | stop mode %StopMode"
     export function motorOFF(Channel:motorSEL, stop:StopMode): void {
         if (Channel == motorSEL.M12 && stop == StopMode.Brake) {
 		pins.digitalWritePin(DigitalPin.P13, 1)
@@ -120,7 +119,7 @@ namespace MyBIT {
  * @param turnDIR      turn Left or Right
  * @param speedturn    motor speed; eg: 40
 */
-//% blockId=Motor_followlineTurn block="turn %Turn | speed %speedturn"
+//% blockId="Motor_followlineTurn" block="turn %Turn | speed %speedturn"
 //% speedturn.min=0 speedturn.max=100
 export function followlineTurn(turnDIR:Turn, speedturn:number): void {
       let motorspeedturn = pins.map(speedturn,0,100,0,1023)   
@@ -144,7 +143,7 @@ export function followlineTurn(turnDIR:Turn, speedturn:number): void {
  * @param speedrotate   	speed of motor; eg: 50
  * @param pausems       	time to brake; eg: 400
  */
- //% blockId=Motor_rotate block="rotate  %Turn | speed %speedrotate | pause %pausems |mS"
+ //% blockId="Motor_rotate" block="rotate  %Turn | speed %speedrotate | pause %pausems |mS"
  //% speedrotate.min=0 speedrotate.max=100
  export function Rotate(rotateDIR:Turn, speedrotate:number, pausems: number): void {
       let motorspeedrotate = pins.map(speedrotate,0,100,0,1023)      
@@ -177,20 +176,20 @@ export function followlineTurn(turnDIR:Turn, speedturn:number): void {
  * @param rotateLINE     	rotate robot direction.
  * @param speedline     	motor speed; eg: 50
  */
- //% blockId=Motor_rotateline block="rotate  %Turn | speed %speedline"
+ //% blockId="Motor_rotatenotime"  block="rotate %Turn |speed %speedline"
  //% speedline.min=0 speedline.max=100
  export function RotateNOTIME(rotateLINE:Turn, speedline:number): void {
       let motorspeedline = pins.map(speedline,0,100,0,1023)      
       if (rotateLINE == Turn.Left) {
-           pins.analogWritePin(AnalogPin.P14, motorspeedrotate)
+           pins.analogWritePin(AnalogPin.P14, motorspeedline)
            pins.digitalWritePin(DigitalPin.P13, 0) 
-           pins.analogWritePin(AnalogPin.P15, motorspeedrotate)
+           pins.analogWritePin(AnalogPin.P15, motorspeedline)
            pins.digitalWritePin(DigitalPin.P16, 0)
       }
       if (rotateLINE == Turn.Right) {
-           pins.analogWritePin(AnalogPin.P13, motorspeedrotate)
+           pins.analogWritePin(AnalogPin.P13, motorspeedline)
            pins.digitalWritePin(DigitalPin.P14, 0) 
-           pins.analogWritePin(AnalogPin.P16, motorspeedrotate)
+           pins.analogWritePin(AnalogPin.P16, motorspeedline)
            pins.digitalWritePin(DigitalPin.P15, 0)
        }
     }
