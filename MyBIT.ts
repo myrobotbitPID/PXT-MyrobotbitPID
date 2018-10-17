@@ -21,17 +21,15 @@ enum motorSEL {
  * Custom blocks
  */
 //% weight=50 color=#ff6600 icon="\uf11e"
-namespace MyBIT {
-
-    /**MotorCH set Motor Channel and Direction. The speed motor is adjustable between 0 to 100.   
-      * @param Speed percent of maximum Speed, eg: 50
+namespace MyBit {      
+     /**MotorCH set Motor Channel and Direction. The speed motor is adjustable between 0 to 100.   
+      * @param speed percent of maximum Speed, eg: 50
       */
-    //% blockId="Mybit_MotorCH" block="motor %motorSEL | direction %motorDIR | Speed %Speed"
-    //% Speed.min=0 Speed.max=100
+    //% blockId="Mybit_MotorCH" block="motor %motorSEL | direction %motorDIR | Speed %speed"
+    //% speed.min=0 speed.max=100
     //% weight=100
-    export function MotorCH(Channel:motorSEL, Direction:motorDIR, Speed:number): void {
-        let motorspeed = pins.map(Speed, 0, 100, 0, 1023)  
-        
+    export function MotorCH(Channel:motorSEL, Direction:motorDIR, speed:number): void {
+	let motorspeed = pins.map(speed, 0, 100, 0, 1023)
         if (Channel == motorSEL.MotorA && Direction == motorDIR.Forward) {
              pins.analogWritePin(AnalogPin.P13, motorspeed)
              pins.digitalWritePin(DigitalPin.P14, 0)                 
@@ -43,7 +41,7 @@ namespace MyBIT {
         else if (Channel == motorSEL.MotorAB && Direction == motorDIR.Forward) {
              pins.analogWritePin(AnalogPin.P13, motorspeed)
              pins.digitalWritePin(DigitalPin.P14, 0)
-	            pins.analogWritePin(AnalogPin.P15, motorspeed)
+	     pins.analogWritePin(AnalogPin.P15, motorspeed)
              pins.digitalWritePin(DigitalPin.P16, 0)                  
         }
         else if (Channel == motorSEL.MotorA && Direction == motorDIR.Reverse) {
