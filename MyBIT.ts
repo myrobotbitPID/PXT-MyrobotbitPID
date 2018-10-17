@@ -9,12 +9,15 @@ enum motor {
 }
 
 enum motorCH {
-    //% block="Motor A"
-    MotorA,
-    //% block="Motor B"
-    MotorB,
-    //% block="Motor AB"
-    MotorAB
+        //% blockId=Motor_motor_A
+        //% block="motor A"
+        MotorA,
+        //% blockId=Motor_motor_B
+        //% block="motor B"
+        MotorB,
+        //% blockId=Motor_motor_AB
+        //% block="motor AB"
+        MotorAB
 }
 
 /**
