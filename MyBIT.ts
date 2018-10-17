@@ -4,27 +4,23 @@
 enum motor {
     //% block="Forward"
     Forward,
-    //% block="Reverse"
-    Reverse
+    //% block="Backward"
+    Backward
 }
 
 enum motorCH {
-        //% blockId=Motor_motor_A
-        //% block="motor A"
-        MotorA,
-        //% blockId=Motor_motor_B
-        //% block="motor B"
-        MotorB,
-        //% blockId=Motor_motor_AB
-        //% block="motor AB"
-        MotorAB
+    //% block="1"
+    M1,
+    //% block="2"
+    M2
 }
 
 /**
  * Custom blocks
  */
-//% weight=50 color=#ff6600 icon="\uf11e"
-namespace MyBIT {
+//% weight=50 color=#02AFEC icon="\uf135"
+namespace iBIT {
+
     /**MotorCH set Motor Channel and Direction. The speed motor is adjustable between 0 to 100.   
       * @param Speed percent of maximum Speed, eg: 50
       */
@@ -34,19 +30,19 @@ namespace MyBIT {
     export function MotorCH(Channel:motorCH, Direction:motor, Speed:number): void {
         let motorspeed = pins.map(Speed, 0, 100, 0, 1023)  
         
-        if (Channel == motorCH.MotorA && Direction == motor.Forward) {
+        if (Channel == motorCH.M1 && Direction == motor.Forward) {
             pins.digitalWritePin(DigitalPin.P13, 1)
             pins.analogWritePin(AnalogPin.P14, motorspeed)            
         }
-        else if (Channel == motorCH.MotorB && Direction == motor.Forward) {
+        else if (Channel == motorCH.M2 && Direction == motor.Forward) {
             pins.digitalWritePin(DigitalPin.P15, 0)
             pins.analogWritePin(AnalogPin.P16, motorspeed)
         }
-        else if (Channel == motorCH.MortorA && Direction == motor.Reverse) {
+        else if (Channel == motorCH.M1 && Direction == motor.Backward) {
             pins.digitalWritePin(DigitalPin.P13, 0)
             pins.analogWritePin(AnalogPin.P14, motorspeed)  
         }
-        else if (Channel == motorCH.MotorB && Direction == motor.Reverse) {
+        else if (Channel == motorCH.M2 && Direction == motor.Backward) {
             pins.digitalWritePin(DigitalPin.P15, 1)
             pins.analogWritePin(AnalogPin.P16, motorspeed)
         }
