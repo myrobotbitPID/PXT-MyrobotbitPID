@@ -26,7 +26,7 @@ namespace MyBIT {
     /**Motor Block to drives motor forward and backward. The speed motor is adjustable between 0 to 100.
       * @param speed percent of maximum speed, eg: 50
       */
-    //% blockId="Mybit_Motor" block="motor %motorSEL|speed %speed"
+    //% blockId="Mybit_Motor" block="motor %motorDIR|speed %speed"
     //% speed.min=0 speed.max=100
     //% weight=95
     export function Motor(Motor: motorDIR, speed: number): void {  
@@ -34,7 +34,7 @@ namespace MyBIT {
         if (Motor == motorDIR.Forward) {
              pins.analogWritePin(AnalogPin.P13, motorspeed)
              pins.digitalWritePin(DigitalPin.P14, 0)
-	            pins.analogWritePin(AnalogPin.P15, motorspeed)
+	     pins.analogWritePin(AnalogPin.P15, motorspeed)
              pins.digitalWritePin(DigitalPin.P16, 0)
         }
         if (Motor == motorDIR.Reverse) {
@@ -81,7 +81,6 @@ namespace MyBIT {
              pins.digitalWritePin(DigitalPin.P13, 0)
              pins.analogWritePin(AnalogPin.P16, motorspeed)
              pins.digitalWritePin(DigitalPin.P15, 0)                  
-        }
-        
+        }        
    }
 }
