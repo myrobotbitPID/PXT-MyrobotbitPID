@@ -48,5 +48,13 @@ namespace MyBIT {
             pins.digitalWritePin(DigitalPin.P15, 1)
             pins.analogWritePin(AnalogPin.P16, motorspeed)
         }
+        else if (Channel == motorCH.M12 && Direction == motor.Forward) {
+            pins.digitalWritePin(DigitalPin.P15, 1)
+            pins.analogWritePin(AnalogPin.P16, motorspeed)
+        }
+        else if (Channel == motorCH.M12 && Direction == motor.Backward) {
+            pins.digitalWritePin(DigitalPin.P15, 1)
+            pins.analogWritePin(AnalogPin.P16, motorspeed)
+        }
     }
 }
