@@ -4,15 +4,17 @@
 enum motor {
     //% block="Forward"
     Forward,
-    //% block="Backward"
-    Backward
+    //% block="Reverse"
+    Reverse
 }
 
 enum motorCH {
-    //% block="1"
-    M1,
-    //% block="2"
-    M2
+    //% block="A"
+    MotorA,
+    //% block="B"
+    MotorB,
+    //% block="AB"
+    MotorAB
 }
 
 /**
@@ -29,19 +31,19 @@ namespace MyBIT {
     export function MotorCH(Channel:motorCH, Direction:motor, Speed:number): void {
         let motorspeed = pins.map(Speed, 0, 100, 0, 1023)  
         
-        if (Channel == motorCH.M1 && Direction == motor.Forward) {
+        if (Channel == motorCH.MotorA && Direction == motor.Forward) {
             pins.digitalWritePin(DigitalPin.P13, 1)
             pins.analogWritePin(AnalogPin.P14, motorspeed)            
         }
-        else if (Channel == motorCH.M2 && Direction == motor.Forward) {
+        else if (Channel == motorCH.MotorB && Direction == motor.Forward) {
             pins.digitalWritePin(DigitalPin.P15, 0)
             pins.analogWritePin(AnalogPin.P16, motorspeed)
         }
-        else if (Channel == motorCH.M1 && Direction == motor.Backward) {
+        else if (Channel == motorCH.MortorA && Direction == motor.Reverse) {
             pins.digitalWritePin(DigitalPin.P13, 0)
             pins.analogWritePin(AnalogPin.P14, motorspeed)  
         }
-        else if (Channel == motorCH.M2 && Direction == motor.Backward) {
+        else if (Channel == motorCH.MotorB && Direction == motor.Reverse) {
             pins.digitalWritePin(DigitalPin.P15, 1)
             pins.analogWritePin(AnalogPin.P16, motorspeed)
         }
