@@ -13,8 +13,8 @@ enum motorSEL {
 enum motorDIR {
     //% block="Forward"
     Forward,
-    //% block="Backward"
-    Backward
+    //% block="Reverse"
+    Reverse
 }
 
 /**
@@ -40,11 +40,11 @@ namespace MyBIT {
             pins.digitalWritePin(DigitalPin.P15, 0)
             pins.analogWritePin(AnalogPin.P16, motorspeed)
         }
-        else if (Channel == motorSEL.M1 && Direction == motorDIR.Backward) {
+        else if (Channel == motorSEL.M1 && Direction == motorDIR.Reverse) {
             pins.digitalWritePin(DigitalPin.P13, 0)
             pins.analogWritePin(AnalogPin.P14, motorspeed)  
         }
-        else if (Channel == motorSEL.M2 && Direction == motorDIR.Backward) {
+        else if (Channel == motorSEL.M2 && Direction == motorDIR.Reverse) {
             pins.digitalWritePin(DigitalPin.P15, 1)
             pins.analogWritePin(AnalogPin.P16, motorspeed)
         }
@@ -52,7 +52,7 @@ namespace MyBIT {
             pins.digitalWritePin(DigitalPin.P15, 1)
             pins.analogWritePin(AnalogPin.P16, motorspeed)
         }
-        else if (Channel == motorSEL.M12 && Direction == motorDIR.Backward) {
+        else if (Channel == motorSEL.M12 && Direction == motorDIR.Reverse) {
             pins.digitalWritePin(DigitalPin.P15, 1)
             pins.analogWritePin(AnalogPin.P16, motorspeed)
         }
