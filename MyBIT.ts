@@ -19,7 +19,7 @@ enum motorCH {
  * Custom blocks
  */
 //% weight=50 color=#ff6600 weight=10 icon="\uf11e"
-namespace iBIT {
+namespace MyBIT {
 
     /**MotorCH set Motor Channel and Direction. The speed motor is adjustable between 0 to 100.   
       * @param Speed percent of maximum Speed, eg: 50
