@@ -140,7 +140,7 @@ export function followlineTurn(turnDIR:Turn, speedturn:number): void {
 
 /**
  * Execute dual motor to rotate with delay mS time to brake mode.
- * @param rotateDIR         rotate robot Index
+ * @param rotateDIR         rotate robot direction.
  * @param speedrotate   speed of motor; eg: 50
  * @param pausems       milliseconde delay to stop; eg: 400
  */
@@ -172,4 +172,28 @@ export function followlineTurn(turnDIR:Turn, speedturn:number): void {
        }
     }
 
+/**
+ * Execute dual motor to rotate Left and Right non stop for use linefollow mode.
+ * @param rotateDIR     rotate robot direction.
+ * @param speedrotate   speed of motor; eg: 50
+ */
+ //% blockId=Motor_rotate block="rotate  %Turn | speed %speedrotate"
+ //% speedrotate.min=0 speedrotate.max=100
+ export function Rotate(rotateDIR:Turn, speedrotate:number): void {
+      let motorspeedrotate = pins.map(speedrotate,0,100,0,1023)      
+      if (rotateDIR == Turn.Left) {
+           pins.analogWritePin(AnalogPin.P14, motorspeedrotate)
+           pins.digitalWritePin(DigitalPin.P13, 0) 
+           pins.analogWritePin(AnalogPin.P15, motorspeedrotate)
+           pins.digitalWritePin(DigitalPin.P16, 0)
+      }
+      if (rotateDIR == Turn.Right) {
+           pins.analogWritePin(AnalogPin.P13, motorspeedrotate)
+           pins.digitalWritePin(DigitalPin.P14, 0) 
+           pins.analogWritePin(AnalogPin.P16, motorspeedrotate)
+           pins.digitalWritePin(DigitalPin.P15, 0)
+       }
+    }
+
+	
 }
