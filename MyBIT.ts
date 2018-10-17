@@ -9,9 +9,9 @@ enum motor {
 }
 
 enum motorCH {
-    //% block="1"
+    //% block="A"
     M1,
-    //% block="2"
+    //% block="B"
     M2
 }
 
