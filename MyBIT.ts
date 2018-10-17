@@ -118,7 +118,7 @@ namespace MyBIT {
  * @param turnDIR  turn Left or Right
  * @param speedturn    speed of motor; eg: 40
 */
-    //% blockId=Motor_followlineTurn block="turn %Turn | speed %speed"
+    //% blockId=Motor_followlineTurn block="turn %Turn | speed %speedturn"
     //% speedturn.min=0 speedturn.max=100
     export function followlineTurn(turnDIR:Turn, speedturn:number): void {
       let motorspeedturn = pins.map(speedturn,0,100,0,1023)   
