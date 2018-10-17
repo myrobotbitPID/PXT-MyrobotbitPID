@@ -1,14 +1,7 @@
 /**
-  * Enumeration of Motor.
+  * Coding for control of Motor.
   */
-enum motor {
-    //% block="Forward"
-    Forward,
-    //% block="Backward"
-    Backward
-}
-
-enum motorCH {
+enum motorSEL {
     //% block="A"
     M1,
     //% block="B"
@@ -17,42 +10,49 @@ enum motorCH {
     M12
 }
 
+enum motorDIR {
+    //% block="Forward"
+    Forward,
+    //% block="Backward"
+    Backward
+}
+
 /**
  * Custom blocks
  */
 //% weight=50 color=#ff6600 weight=10 icon="\uf11e"
 namespace MyBIT {
 
-    /**MotorCH set Motor Channel and Direction. The speed motor is adjustable between 0 to 100.   
+    /**MotorON set Motor Channel and Direction. The speed motor is adjustable between 0 to 100.   
       * @param Speed percent of maximum Speed, eg: 50
       */
-    //% blockId="ibit_MotorCH" block="Motor %motorCH | Direction %Motor | Speed %Speed"
+    //% blockId="ibit_MotorON" block="motor %motorSEL | direction %motorDIR | speed %Speed"
     //% Speed.min=0 Speed.max=100
     //% weight=100
-    export function MotorCH(Channel:motorCH, Direction:motor, Speed:number): void {
+    export function MotorON(Channel:motorSEL, Direction:motorDIR, Speed:number): void {
         let motorspeed = pins.map(Speed, 0, 100, 0, 1023)  
         
-        if (Channel == motorCH.M1 && Direction == motor.Forward) {
+        if (Channel == motorSEL.M1 && Direction == motorDIR.Forward) {
             pins.digitalWritePin(DigitalPin.P13, 1)
             pins.analogWritePin(AnalogPin.P14, motorspeed)            
         }
-        else if (Channel == motorCH.M2 && Direction == motor.Forward) {
+        else if (Channel == motorSEL.M2 && Direction == motorDIR.Forward) {
             pins.digitalWritePin(DigitalPin.P15, 0)
             pins.analogWritePin(AnalogPin.P16, motorspeed)
         }
-        else if (Channel == motorCH.M1 && Direction == motor.Backward) {
+        else if (Channel == motorSEL.M1 && Direction == motorDIR.Backward) {
             pins.digitalWritePin(DigitalPin.P13, 0)
             pins.analogWritePin(AnalogPin.P14, motorspeed)  
         }
-        else if (Channel == motorCH.M2 && Direction == motor.Backward) {
+        else if (Channel == motorSEL.M2 && Direction == motorDIR.Backward) {
             pins.digitalWritePin(DigitalPin.P15, 1)
             pins.analogWritePin(AnalogPin.P16, motorspeed)
         }
-        else if (Channel == motorCH.M12 && Direction == motor.Forward) {
+        else if (Channel == motorSEL.M12 && Direction == motorDIR.Forward) {
             pins.digitalWritePin(DigitalPin.P15, 1)
             pins.analogWritePin(AnalogPin.P16, motorspeed)
         }
-        else if (Channel == motorCH.M12 && Direction == motor.Backward) {
+        else if (Channel == motorSEL.M12 && Direction == motorDIR.Backward) {
             pins.digitalWritePin(DigitalPin.P15, 1)
             pins.analogWritePin(AnalogPin.P16, motorspeed)
         }
