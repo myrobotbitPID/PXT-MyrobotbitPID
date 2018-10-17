@@ -31,6 +31,8 @@ enum Turn {
         Right
     }
 
+
+
 /**
  * Custom blocks
  */
@@ -115,12 +117,12 @@ namespace MyBIT {
 
 /**
  * Turn direction with dual motors for line follow robot.
- * @param turnDIR  turn Left or Right
- * @param speedturn    speed of motor; eg: 40
+ * @param turnDIR      turn Left or Right
+ * @param speedturn    motor speed; eg: 40
 */
-    //% blockId=Motor_followlineTurn block="turn %Turn | speed %speedturn"
-    //% speedturn.min=0 speedturn.max=100
-    export function followlineTurn(turnDIR:Turn, speedturn:number): void {
+//% blockId=Motor_followlineTurn block="turn %Turn | speed %speedturn"
+//% speedturn.min=0 speedturn.max=100
+export function followlineTurn(turnDIR:Turn, speedturn:number): void {
       let motorspeedturn = pins.map(speedturn,0,100,0,1023)   
       if (turnDIR == Turn.Left) {
  	    pins.digitalWritePin(DigitalPin.P13, 0)
@@ -133,6 +135,40 @@ namespace MyBIT {
             pins.digitalWritePin(DigitalPin.P13, 0)
  	    pins.digitalWritePin(DigitalPin.P15, 0)
 	    pins.digitalWritePin(DigitalPin.P16, 0)
+       }
+    }
+
+/**
+ * Execute dual motor to rotate with delay mS time to stop.
+ * @param rotateDIR         rotate robot Index
+ * @param speedrotate   speed of motor; eg: 50
+ * @param pausems       milliseconde delay to stop; eg: 400
+ */
+ //% blockId=Motor_rotate block="rotate  %Turn | speed %speedrotate | pause %pausems | mS"
+ //% speedrotate.min=0 speedrotate.max=100
+ export function Rotate(rotateDIR:Turn, speedrotate:number, pausems: number): void {
+      let motorspeedrotate = pins.map(speedrotate,0,100,0,1023)      
+      if (rotateDIR == Turn.Left) {
+           pins.analogWritePin(AnalogPin.P14, motorspeedrotate)
+           pins.digitalWritePin(DigitalPin.P13, 0) 
+           pins.analogWritePin(AnalogPin.P15, motorspeedrotate)
+           pins.digitalWritePin(DigitalPin.P16, 0)
+	   basic.pause(pausems)	   
+	   pins.digitalWritePin(DigitalPin.P13, 1)
+	   pins.digitalWritePin(DigitalPin.P14, 1)
+	   pins.digitalWritePin(DigitalPin.P15, 1)
+	   pins.digitalWritePin(DigitalPin.P16, 1) 
+      }
+      if (rotateDIR == Turn.Right) {
+           pins.analogWritePin(AnalogPin.P13, motorspeedrotate)
+           pins.digitalWritePin(DigitalPin.P14, 0) 
+           pins.analogWritePin(AnalogPin.P16, motorspeedrotate)
+           pins.digitalWritePin(DigitalPin.P15, 0)
+	   basic.pause(pausems)	   
+	   pins.digitalWritePin(DigitalPin.P13, 1)
+	   pins.digitalWritePin(DigitalPin.P14, 1)
+	   pins.digitalWritePin(DigitalPin.P15, 1)
+	   pins.digitalWritePin(DigitalPin.P16, 1)  
        }
     }
 
