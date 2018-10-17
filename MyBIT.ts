@@ -24,6 +24,12 @@ enum StopMode {
         Coast
 }
 
+enum Turn {
+        //% block="left"
+        Left,
+        //% block="right"
+        Right
+    }
 
 /**
  * Custom blocks
@@ -59,7 +65,7 @@ namespace MyBIT {
         else if (Channel == motorSEL.M12 && Direction == motorDIR.Forward) {
             pins.analogWritePin(AnalogPin.P13, motorspeed)
             pins.digitalWritePin(DigitalPin.P14, 0)
-			         pins.analogWritePin(AnalogPin.P15, motorspeed)
+	    pins.analogWritePin(AnalogPin.P15, motorspeed)
             pins.digitalWritePin(DigitalPin.P16, 0)
         }
         else if (Channel == motorSEL.M12 && Direction == motorDIR.Reverse) {
@@ -105,6 +111,29 @@ namespace MyBIT {
  		pins.digitalWritePin(DigitalPin.P15, 0)
 		pins.digitalWritePin(DigitalPin.P16, 0)
         }
+    }
+
+/**
+ * Turn direction with dual motors for line follow robot.
+ * @param turnDIR  turn Left or Right
+ * @param speedturn    speed of motor; eg: 40
+*/
+    //% blockId=Motor_followlineTurn block="turn %Turn | speed %speed"
+    //% speedturn.min=0 speedturn.max=100
+    export function followlineTurn(turnDIR:Turn, speedturn:number): void {
+      let motorspeedturn = pins.map(speedturn,0,100,0,1023)   
+      if (turnDIR == Turn.Left) {
+ 	    pins.digitalWritePin(DigitalPin.P13, 0)
+	    pins.digitalWritePin(DigitalPin.P14, 0) 
+	    pins.analogWritePin(AnalogPin.P15, motorspeedturn)
+            pins.digitalWritePin(DigitalPin.P16, 0)
+       }
+      if (turnDIR == Turn.Right) {
+            pins.analogWritePin(AnalogPin.P14, motorspeedturn)
+            pins.digitalWritePin(DigitalPin.P13, 0)
+ 	    pins.digitalWritePin(DigitalPin.P15, 0)
+	    pins.digitalWritePin(DigitalPin.P16, 0)
+       }
     }
 
 }
