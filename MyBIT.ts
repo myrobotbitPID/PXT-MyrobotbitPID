@@ -78,6 +78,32 @@ namespace MyBIT {
         }
     }
 
+    /**MotorAB set Motor AB and Direction. The speed motor seperate and adjustable between 0 to 100.   
+      * @param speedA percent of maximum Speed, eg: 50
+      * @param speedB percent of maximum Speed, eg: 50
+      */
+    //% blockId="ibit_MotorAB" block="motor AB direction %motorDIR |speed A %speedA |speed B %speedB"
+    //% speedA.min=0 speedA.max=100
+    //% speedB.min=0 speedB.max=100
+    //% weight=100
+    export function MotorAB(Direction:motorDIR, speedA:number, speedB:number): void {
+        let motorspeedA = pins.map(speedA, 0, 100, 0, 1023)
+        let motorspeedB = pins.map(speedB, 0, 100, 0, 1023)  
+        
+        if (Direction == motorDIR.Forward) {
+            pins.analogWritePin(AnalogPin.P13, motorspeedA)
+            pins.digitalWritePin(DigitalPin.P14, 0)
+	    pins.analogWritePin(AnalogPin.P15, motorspeedB)
+            pins.digitalWritePin(DigitalPin.P16, 0)
+        }
+        if (Direction == motorDIR.Reverse) {
+            pins.analogWritePin(AnalogPin.P14, motorspeedA)
+            pins.digitalWritePin(DigitalPin.P13, 0)
+            pins.analogWritePin(AnalogPin.P16, motorspeedB)
+            pins.digitalWritePin(DigitalPin.P15, 0)
+        }
+    }
+
     /**
      * Turns off the motor
      * @param motor which motor to turn off
