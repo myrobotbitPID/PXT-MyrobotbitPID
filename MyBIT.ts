@@ -12,7 +12,9 @@ enum motorCH {
     //% block="A"
     M1,
     //% block="B"
-    M2
+    M2,
+     //% block="AB"
+    M12
 }
 
 /**
