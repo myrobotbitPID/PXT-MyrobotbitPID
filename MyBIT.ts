@@ -39,8 +39,8 @@ enum Turn {
 //% weight=50 color=#ff6600 weight=10 icon="\uf11e"
 namespace MyBIT {
 
-    /**MotorON set Motor Channel and Direction. The speed motor is adjustable between 0 to 100.   
-      * @param Speed percent of maximum Speed, eg: 50
+    /**MotorON select motor channel and direction. The speed motor is adjustable between 0 to 100.   
+      * @param Speed  	percent of maximum Speed, eg: 50
       */
     //% blockId="ibit_MotorON" block="motor %motorSEL | direction %motorDIR | speed %Speed"
     //% Speed.min=0 Speed.max=100
@@ -78,11 +78,11 @@ namespace MyBIT {
         }
     }
 
-    /**MotorAB set Motor AB and Direction. The speed motor seperate and adjustable between 0 to 100.   
+    /**MotorAB set motor AB and direction. The speed motor seperate and adjustable between 0 to 100.   
       * @param speedA percent of maximum Speed, eg: 50
       * @param speedB percent of maximum Speed, eg: 50
       */
-    //% blockId="ibit_MotorAB" block="motor AB direction %motorDIR |speed A %speedA |speed B %speedB"
+    //% blockId="ibit_MotorAB" block="motor[AB] direction %motorDIR |speed[A] %speedA |speed[B] %speedB"
     //% speedA.min=0 speedA.max=100
     //% speedB.min=0 speedB.max=100
     //% weight=100
