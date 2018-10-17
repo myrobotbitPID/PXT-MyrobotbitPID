@@ -139,7 +139,7 @@ export function followlineTurn(turnDIR:Turn, speedturn:number): void {
     }
 
 /**
- * Execute dual motor to rotate with delay mS time to stop.
+ * Execute dual motor to rotate with delay mS time to brake mode.
  * @param rotateDIR         rotate robot Index
  * @param speedrotate   speed of motor; eg: 50
  * @param pausems       milliseconde delay to stop; eg: 400
