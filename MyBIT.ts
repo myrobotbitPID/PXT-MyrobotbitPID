@@ -17,6 +17,14 @@ enum motorDIR {
     Reverse
 }
 
+enum StopMode {
+        //% block="brake"
+        Brake,
+        //% block="coast"
+        Coast
+}
+
+
 /**
  * Custom blocks
  */
@@ -61,4 +69,42 @@ namespace MyBIT {
             pins.digitalWritePin(DigitalPin.P15, 0)
         }
     }
+
+    /**
+     * Turns off the motor
+     * @param motor which motor to turn off
+     */
+    //% blockId=Motor_motoroff
+    //% block="motor %motorSEL | stop mode %StopMode"
+    export function motorOFF(Channel:motorSEL, stop:StopMode): void {
+        if (Channel == motorSEL.M12 && stop == StopMode.Brake) {
+		pins.digitalWritePin(DigitalPin.P13, 1)
+		pins.digitalWritePin(DigitalPin.P14, 1)
+		pins.digitalWritePin(DigitalPin.P15, 1)
+		pins.digitalWritePin(DigitalPin.P16, 1) 
+        }
+        else if (Channel == motorSEL.M12 && stop == StopMode.Coast) {
+		pins.digitalWritePin(DigitalPin.P13, 0)
+		pins.digitalWritePin(DigitalPin.P14, 0)
+		pins.digitalWritePin(DigitalPin.P15, 0)
+		pins.digitalWritePin(DigitalPin.P16, 0)  
+        }
+        else if (Channel == motorSEL.M1 && stop == StopMode.Brake) {
+		pins.digitalWritePin(DigitalPin.P13, 1)
+		pins.digitalWritePin(DigitalPin.P14, 1) 
+        }
+        else if (Channel == motorSEL.M1 && stop == StopMode.Coast) {
+		pins.digitalWritePin(DigitalPin.P13, 0)
+		pins.digitalWritePin(DigitalPin.P14, 0) 
+        }
+        else if (Channel == motorSEL.M2 && stop == StopMode.Brake) {
+		pins.digitalWritePin(DigitalPin.P15, 1)
+		pins.digitalWritePin(DigitalPin.P16, 1) 
+        }
+        else if (Channel == motorSEL.M2 && stop == StopMode.Coast) {
+ 		pins.digitalWritePin(DigitalPin.P15, 0)
+		pins.digitalWritePin(DigitalPin.P16, 0)
+        }
+    }
+
 }
